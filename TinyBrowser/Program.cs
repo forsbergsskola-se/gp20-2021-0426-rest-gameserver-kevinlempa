@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace TinyBrowser {
     class Program {
@@ -26,6 +25,7 @@ namespace TinyBrowser {
 
             return list;
         }
+        
 
         static void Main(string[] args) {
             GrabHtml("", "");
@@ -40,12 +40,12 @@ namespace TinyBrowser {
             string html = "";
             var pattern = @"//";
             var rgx = new Regex(pattern);
-            var regResult = rgx.Replace(currentRequest, "",1);
+
+            var regResult = rgx.Replace(currentRequest, "", 1);
             if (regResult.StartsWith("/")) {
                 regResult = regResult.Remove(0, 1);
-                
             }
-            
+
             while (true) {
                 client.Connect("www.acme.com", 80);
                 if (client.Connected) {
@@ -68,6 +68,7 @@ namespace TinyBrowser {
 
             var from = html.IndexOf("<title>") + "<title>".Length;
             var to = html.LastIndexOf("</title>");
+
             string title = new string("");
             if (from - to < 0)
                 title = html.Substring(from, to - from);
@@ -77,8 +78,9 @@ namespace TinyBrowser {
             List<string> URLs = new List<string>();
             List<string> displayNames = new List<string>();
             Console.WriteLine(title);
-
-            for (int i = 0; i < list.Count; i++) {
+            for (int i = 0;
+                i < list.Count;
+                i++) {
                 hrefList.Add(html.Substring(list[i] + 9, list2[i] - list[i]));
             }
 
@@ -90,10 +92,11 @@ namespace TinyBrowser {
                 displayNames.Add(href.Substring(index2, index3 - index2));
             }
 
-            for (int i = 0; i < URLs.Count; i++) {
+            for (int i = 0;
+                i < URLs.Count;
+                i++) {
                 Console.WriteLine($"{i} {displayNames[i]} \n({URLs[i]})");
             }
-
 
             var s = Console.ReadLine();
             key = Convert.ToInt32(s);
