@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -10,12 +11,8 @@ namespace LameScooter {
             var option = new JsonSerializerOptions();
             option.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             var stations = JsonSerializer.Deserialize<LameScooterStationList>(json, option);
-            for (int i = 0; i < stations.Stations.Length; i++) {
-                if (stationName == stations.Stations[i].Name) {
-                    return stations.Stations[i].BikesAvailable;
-                }
-            }
-            return -1;
+            
+            return stations.GetAvailableBikes(stationName);
         }
     }
 }
