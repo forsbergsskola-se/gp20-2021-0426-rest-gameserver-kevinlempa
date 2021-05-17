@@ -13,7 +13,9 @@ namespace GitHubExplorer {
             var repo = user.GetRepository(repositories);
             Console.WriteLine(repo.Description);
             var issues = repo.GetIssues();
-            
+          if(issues.Count == 0)
+            Console.WriteLine("No Issues found.");
+          
         }
     }
 }

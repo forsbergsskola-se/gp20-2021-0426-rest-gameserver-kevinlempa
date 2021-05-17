@@ -27,7 +27,7 @@ namespace GitHubExplorer {
         public string Name => Login;
         public string Location { get; set; }
         public string Email { get; set; }
-        public string Hireable { get; set; }
+        public bool Hireable { get; set; }
         public string Bio { get; set; }
         public int Public_repos { get; set; }
         public int Followers { get; set; }
@@ -51,11 +51,7 @@ namespace GitHubExplorer {
             if (string.IsNullOrEmpty(Blog)) {
                 Blog = "Not available";
             }
-
-            if (string.IsNullOrEmpty(Hireable)) {
-                Hireable = "Unknown";
-            }
-
+            
             if (string.IsNullOrEmpty(Bio)) {
                 Bio = "Not available";
             }
