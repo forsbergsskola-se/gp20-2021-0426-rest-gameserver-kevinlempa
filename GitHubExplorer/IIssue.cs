@@ -7,6 +7,9 @@ namespace GitHubExplorer {
         string Name { get; }
         string Description { get; }
         public string Title { get; set; }
+        public void CreateComment();
+        public Uri Url { get; set; }
+        public void UpdateIssue();
         public int Number { get; set; }
         public string Body { get; set; }
         public DateTime Created_at { get; set; }

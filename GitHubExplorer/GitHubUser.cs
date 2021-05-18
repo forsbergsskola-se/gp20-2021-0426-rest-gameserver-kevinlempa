@@ -18,8 +18,7 @@ namespace GitHubExplorer {
                 foreach (var repo in repos) {
                     if (repo.Name.Equals(repositoryName, StringComparison.InvariantCultureIgnoreCase)) return repo;
                 }
-                
-                Console.WriteLine("Repository not found try again :");
+                Console.WriteLine("-----------Repository not found try again-----------");
                 repositoryName = Console.ReadLine();
             }
         }
@@ -27,13 +26,12 @@ namespace GitHubExplorer {
         public string Name => Login;
         public string Location { get; set; }
         public string Email { get; set; }
-        public bool Hireable { get; set; }
         public string Bio { get; set; }
         public int Public_repos { get; set; }
         public int Followers { get; set; }
         public int Following { get; set; }
-        public string Created_at { get; set; }
-        public string Updated_at { get; set; }
+        public DateTime Created_at { get; set; }
+        public DateTime Updated_at { get; set; }
         
         public override string ToString() {
             if (string.IsNullOrEmpty(Company)) {
@@ -63,13 +61,13 @@ namespace GitHubExplorer {
             foreach (var repo in repos) {
                 var index = repo.Issues_url.IndexOf("{");
                 repo.Issues_url = repo.Issues_url.Remove(index);
-                repoList += $"Repository name : {repo.Name}\r\n";
+                repoList += $"{repo.Name}\r\n";
             }
 
-            return $"User : {Login}\r\n" +
+            return "----------------------\r\n" +
+                   $"User : {Login}\r\n" +
                    $"Location : {Location}\r\n" +
                    $"Email : {Email}\r\n" +
-                   $"Hireable : {Hireable}\r\n" +
                    $"Blog : {Blog}\r\n" +
                    $"Bio : {Bio}\r\n" +
                    $"Public Repos : {Public_repos}\r\n" +
@@ -77,7 +75,9 @@ namespace GitHubExplorer {
                    $"Following : {Following}\r\n" +
                    $"Created at : {Created_at}\r\n" +
                    $"Updated at : {Updated_at}\r\n" +
-                   $"Repositories : {repoList}";
+                   $"-----------Repositories-----------" +
+                   $"{repoList}" +
+                   $"----------------------";
         }
     }
 }

@@ -5,5 +5,7 @@ namespace GitHubExplorer {
         List<IIssue> GetIssues();
         string Name { get; }
         string Description { get; }
+        public void CreateIssue();
+      
     }
 }
